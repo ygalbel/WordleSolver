@@ -51,19 +51,17 @@ class solution  {
 
 var u = new solution()
         .length(5)
-        .nonExistingLetter('r', 't','u','o','p','a','d','f',
-        'h','l','b')
-        .specific(
-            { letter : 'i', location: 1},
-            { letter : 'c', location: 3},
-            { letter : 'e', location: 4},
-            )
-            .specificNot(
-                { letter : 'c' , location: 1},
-                { letter : 'e' , location: 2},
-                { letter : 'n' , location: 4},
-                { letter : 'i' , location: 2})
-        .existingLetters( 'i','c', 'n')
+        .nonExistingLetter('r','u','a','d','b' ,'m', 'c')
+         .specific(
+             { letter : 's', location: 3},
+             { letter : 't', location: 4}
+             )
+             .specificNot(
+                 { letter : 'e' , location: 2},
+                 { letter : 't' , location: 0},
+                 { letter : 'h' , location: 1}
+                 )
+        .existingLetters( 'e','t', 'h')
         
     
 
