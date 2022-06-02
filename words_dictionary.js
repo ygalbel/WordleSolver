@@ -5,9 +5,10 @@ class solution {
         this.dict = words;
     }
 
-    existingLetters() {
-        for (var i = 0; i < arguments.length; i++) {
-            this.dict = this.dict.filter(a => a.indexOf(arguments[i]) > -1);
+    existingLetters(letters) {
+        for (var i = 0; i < letters.length; i++) {
+            console.log(letters[i])
+            this.dict = this.dict.filter(a => a.indexOf(letters[i]) > -1);
         }
 
         return this;
@@ -16,19 +17,24 @@ class solution {
         this.dict = this.dict.filter(a => a.length == length);
         return this;
     }
-    nonExistingLetter() {
-        for (var i = 0; i < arguments.length; i++) {
-            this.dict = this.dict.filter(a => a.indexOf(arguments[i]) == -1);
+    nonExistingLetter(letters) {
+        
+        for (var i = 0; i < letters.length; i++) {
+            console.log(letters[i]);
+            this.dict = this.dict.filter(a => a.indexOf(letters[i]) == -1);
         }
-
         return this;
-    }
+    };
+
+    static getIndices = (s, t) => { // source: https://stackoverflow.com/a/66719322/1543596
+        return [...s].flatMap((char, i) => (char === t ? i : []));
+    };
+
     specific() {
-        console.log(arguments);
+        console.log(arguments, this.dict);
         for (var i = 0; i < arguments.length; i++) {
-            console.log(this.dict.length);
             this.dict = this.dict.filter(a =>
-                a.indexOf(arguments[i].letter) == arguments[i].location);
+                solution.getIndices(a, arguments[i].letter).some(d => d == arguments[i].location));
         }
 
         return this;
@@ -59,10 +65,20 @@ class solution {
 
 var u = new solution()
     .length(5)
-    .nonExistingLetter('r', 'u', 'a', 'd', 'b', 'm', 'c')
+    .nonExistingLetter('bredfotimpuzyg')
+    
     .specific(
-        {letter: 's', location: 3}, 
-        {letter: 't', location: 4 })
+        {
+            letter: 'a',
+            location : 3
+        }    ,
+        {
+            letter: 'l',
+            location : 4
+        } 
+    );
+    //.existingLetters("ase");
+    
 
 console.log(u.dict);
-console.log(u.proposedWord());
+//console.log(u.proposedWord());
